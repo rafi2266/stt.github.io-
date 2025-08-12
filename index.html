@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Video Player</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121826;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="text-gray-300 p-4">
+
+    <!-- Title Section -->
+    <h1 class="text-3xl md:text-4xl font-bold text-white py-4 md:py-6">STC <span class="text-red-500">ANIME</span> WORLD</h1>
+
+    <main class="w-full max-w-5xl">
+        <!-- Video Player Section -->
+        <div class="bg-gray-900 p-2 sm:p-4 rounded-lg mb-6">
+            <div class="video-container rounded-lg">
+                <iframe 
+                    id="video-player"
+                    src="" 
+                    frameborder="0" 
+                    marginwidth="0" 
+                    marginheight="0" 
+                    scrolling="no" 
+                    allowfullscreen="true"
+                    webkitallowfullscreen="true"
+                    mozallowfullscreen="true">
+                </iframe>
+            </div>
+            <div class="mt-4 px-2">
+                <h1 id="anime-title" class="text-xl md:text-2xl font-bold text-white"></h1>
+                <p id="episode-info" class="text-gray-400"></p>
+            </div>
+        </div>
+
+        <!-- Episodes and Download Section -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Episodes List -->
+            <div class="md:col-span-2 bg-gray-900 p-4 sm:p-6 rounded-lg">
+                <h2 class="text-xl font-bold text-white mb-4">Episodes</h2>
+                <div id="episode-list-container" class="max-h-80 overflow-y-auto pr-2">
+                    <div id="episode-list" class="space-y-2">
+                        <!-- এপিসোড বাটনগুলো এখানে জাভাস্ক্রিপ্ট দিয়ে তৈরি হবে -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Download Links -->
+            <div class="bg-gray-900 p-4 sm:p-6 rounded-lg">
+                <h2 class="text-xl font-bold text-white mb-4">Download</h2>
+                <div class="space-y-3">
+                    <a id="download-1080p" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg inline-flex items-center justify-center transition-transform transform hover:scale-105">
+                        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"></path></svg>
+                        1080p
+                    </a>
+                    <a id="download-720p" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg inline-flex items-center justify-center transition-transform transform hover:scale-105">
+                        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"></path></svg>
+                        720p
+                    </a>
+                    <a id="download-480p" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-4 rounded-lg inline-flex items-center justify-center transition-transform transform hover:scale-105">
+                        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"></path></svg>
+                        480p
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ===================================================================
+        // শুধুমাত্র এই অংশটি পরিবর্তন করুন
+        // ===================================================================
+
+        const animeTitle = "Devil May Cry";
+        
+        const episodes = [
+            {
+                title: "S1 Ep1 Inferno 1080p",
+                src: "https://rubyvidhub.com/embed-t0491vz5wubd.html",
+                download: {
+                    "1080p": "https://streamruby.com/d/t0491vz5wubd_h",
+                    "720p": "https://streamruby.com/d/t0491vz5wubd_n",
+                    "480p": "https://streamruby.com/d/t0491vz5wubd_l"
+                }
+            },
+            {
+                title: "S1 Ep2 Highway Star",
+                src: "https://rubyvidhub.com/embed-aegv7snv3eyx.html",
+                download: {
+                    "1080p": "https://streamruby.com/d/aegv7snv3eyx_h",
+                    "720p": "https://streamruby.com/d/aegv7snv3eyx_n",
+                    "480p": "https://streamruby.com/d/aegv7snv3eyx_l"
+                }
+            },
+            // নতুন এপিসোড যোগ করতে, উপরের ফরম্যাটটি কপি করে নিচে পেস্ট করুন
+            // এবং নতুন লিঙ্কগুলো বসিয়ে দিন।
+            // যেমন:
+            // {
+            //     title: "S1 Ep3 Not Love",
+            //     src: "নতুন ভিডিও লিঙ্ক",
+            //     download: {
+            //         "1080p": "নতুন 1080p ডাউনলোড লিঙ্ক",
+            //         "720p": "নতুন 720p ডাউনলোড লিঙ্ক",
+            //         "480p": "নতুন 480p ডাউনলোড লিঙ্ক"
+            //     }
+            // }
+        ];
+
+        // ===================================================================
+        // নিচের অংশে কোনো পরিবর্তন করার প্রয়োজন নেই
+        // ===================================================================
+
+        const videoPlayer = document.getElementById('video-player');
+        const animeTitleElement = document.getElementById('anime-title');
+        const episodeInfoElement = document.getElementById('episode-info');
+        const episodeListElement = document.getElementById('episode-list');
+        const download1080p = document.getElementById('download-1080p');
+        const download720p = document.getElementById('download-720p');
+        const download480p = document.getElementById('download-480p');
+
+        function updatePlayer(episode) {
+            videoPlayer.src = episode.src;
+            animeTitleElement.textContent = animeTitle;
+            episodeInfoElement.textContent = episode.title;
+            download1080p.href = episode.download['1080p'] || '#';
+            download720p.href = episode.download['720p'] || '#';
+            download480p.href = episode.download['480p'] || '#';
+        }
+
+        function generateEpisodeList() {
+            episodeListElement.innerHTML = '';
+            episodes.forEach((episode, index) => {
+                const button = document.createElement('a');
+                button.href = '#';
+                button.textContent = `Episode ${index + 1}`;
+                button.className = 'episode-link block p-3 rounded-lg text-center transition-colors';
+                
+                if (index === 0) {
+                    button.classList.add('bg-red-600', 'text-white');
+                } else {
+                    button.classList.add('bg-gray-800', 'hover:bg-gray-700');
+                }
+
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    updatePlayer(episode);
+                    
+                    document.querySelectorAll('.episode-link').forEach(link => {
+                        link.classList.replace('bg-red-600', 'bg-gray-800');
+                        link.classList.add('hover:bg-gray-700');
+                    });
+                    button.classList.replace('bg-gray-800', 'bg-red-600');
+                    button.classList.remove('hover:bg-gray-700');
+                });
+                episodeListElement.appendChild(button);
+            });
+        }
+
+        // Initial setup
+        if (episodes.length > 0) {
+            generateEpisodeList();
+            updatePlayer(episodes[0]);
+        }
+    </script>
+
+</body>
+</html>
